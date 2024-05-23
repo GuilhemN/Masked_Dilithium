@@ -16,7 +16,7 @@ AES_HEADERS = $(HEADERS) fips202.h aes256ctr.h
 
 ORDER=1
 MODE=3
-MACRO = -D MASKING_ORDER=$(ORDER)
+MACRO = -DMASKING_ORDER=$(ORDER)
 
 .PHONY: all speed shared clean
 
@@ -24,7 +24,7 @@ all: simple_tests
 
 
 
-simple_tests: simple_test.c randombytes.c $(MASKED_SOURCES) $(MASKED_HEADERS) $(KECCAK_SOURCES) \
+simple_tests: simple_test.c randombytes.c $(MACRO) $(MASKED_SOURCES) $(MASKED_HEADERS) $(KECCAK_SOURCES) \
   $(KECCAK_HEADERS)
 	$(CC) $(CFLAGS) -DDILITHIUM_MODE=$(MODE) \
 	  -o main $< randombytes.c $(KECCAK_SOURCES) $(MASKED_SOURCES)
