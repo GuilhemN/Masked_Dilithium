@@ -18,10 +18,10 @@ with open(PATH,'a') as f:
     for i in range(1, MAX_ORDER+1):
       print("Compiling for masking of order", i,"and mode", mode)
       #system("make clean > /dev/null && make bench ORDER="+str(i)+" RNG="+str(rng)+REDIRECT)
-      system("make clean > /dev/null && make bench ORDER="+str(i)+" MODE="+ str(mode)+REDIRECT)
+      system("make clean > /dev/null && make ORDER="+str(i)+" MODE="+ str(mode)+REDIRECT)
       print("Running tests...", end ='')
       sys.stdout.flush()
-      cur = popen("./bench").read()
+      cur = popen("./main").read()
       print("Writing to "+PATH+" ...")
       f.write(cur)
       res += cur
